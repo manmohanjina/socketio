@@ -7,7 +7,7 @@ const { Server } = require('socket.io');
 // CORS configuration for frontend access
 const io = new Server(httpServer, {
   cors: {
-    origin: "https://socketfrontend-432jyh7ks-manmohanjinas-projects.vercel.app/", // Frontend URL
+    origin: "https://socketfrontend-432jyh7ks-manmohanjinas-projects.vercel.app", // Frontend URL
     credentials: true,
   },
 });
