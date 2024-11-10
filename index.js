@@ -23,7 +23,7 @@ app.use(express.json());
 
 app.use("/user", signup);
 
-app.use("/user", signup);
+
 
 app.use("/create", authMiddleware, CreateRoomRouter);
 
