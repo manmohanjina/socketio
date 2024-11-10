@@ -7,14 +7,17 @@ const { connection } = require("./config/db");
 const signup = require("./routes/signup");
 const CreateRoomRouter = require("./routes/createRoom");
 const authMiddleware = require("./middleware/middleware");
+const cors=require('cors')
 
 // CORS configuration for frontend access
 const io = new Server(httpServer, {
   cors: {
-    origin: "*", // Frontend URL
+    origin: "*", // Frontend URL,
+    methods:['GET',"POST","PUT","PATCH","DELETE"],
     credentials: true,
   },
 });
+app.use(cors())
 
 app.use(express.json());
 
@@ -24,8 +27,9 @@ app.use("/user", signup);
 
 app.use("/create", authMiddleware, CreateRoomRouter);
 
-// Store connected users
-let connectedUsers = [];
+app.use('/user',authMiddleware,CreateRoomRouter)
+
+
 
 // Handle new socket connections
 io.on("connection", (socket) => {
